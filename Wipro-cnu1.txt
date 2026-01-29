@@ -1,0 +1,400 @@
+"Can you tell me about yourself and your work experience and currently on which project you working?"
+• "So currently you are working as a [DevOps] engineer in your current project?"
+• "What are the rules and responsibilities?"
+• "How many people are working in your project?"
+• "What are the tools you are using?"
+• "How you manage those codes?"
+3. Docker and Architecture Questions
+The interviewer probed into containerization and how applications are deployed:
+• "How [is] the deployment running the applications directly from the Jenkins?"
+• "What is the architecture, actual complete architecture?"
+• "How the images will download and then what is the role of the [Kubernetes]?"
+• "Can you tell me about like what are the structure of Dockerfiles?"
+• "What is the sequence of all the commands and Dockerfile like RUN, COPY?"
+• "What are the other commands [in a Dockerfile]?"
+• "What type of artifacts you have been used?"
+4. Kubernetes (K8s) Management and Networking
+A significant portion of the interview focused on managing traffic and scaling within Kubernetes:
+• "How you managing the applications using [Kubernetes]? You have written YAML files also, can you explain bit more about this?"
+• "Suppose there are some traffic coming to your applications which is fluctuating then how you can handle those traffics?"
+• "What is the role of the Load Balancer?"
+• "Which traffic, like is it internal traffic or external traffic?"
+• "What exactly you can write in your [YAML] file?"
+• "Load Balancer is for internal or external?"
+• "How you can specify the replicas?"
+• "In YAML file, what's the syntax, how you can declare [replicas]?"
+• "How do your rolling updates in [Kubernetes] work?"
+• "What should be the command [for a rolling update]?"
+• "How you will do that [restricting access to resources]?"
+• "What are the different types of services in [Kubernetes]?"
+• "What is the role of the NodePort?"
+• "How you will expose one port to each node... how you will define that?"
+5. Terraform (Infrastructure as Code) Questions
+The interviewer asked detailed questions about managing infrastructure using Terraform:
+• "So you have used the Terraform also right?"
+• "What you have been develop using Terraform?"
+• "Can you explain me about the basic Terraform CLI commands?"
+• "Can you tell me what are the sequence of the Terraform commands?"
+• "What about [Terraform] validate?"
+• "How you can ignore those duplicates [in Terraform code]?"
+• "Which module [can you name]?"
+• "How you can delete the resources if it is a duplicate?"
+• "What you will do [if multiple users run Terraform at the same time]?"
+• "How you can recover it [a manually deleted resource]?"
+• "What it shows if we run Terraform plan?"
+• "How and where you can write multiple cloud providers and how you can call... how it can pick up AWS and GCP?"
+6. Jenkins and CI/CD Triggers
+Technical questions regarding Jenkins automation included:
+• "Have you written any files like declarative or have you got any chance to written this or only you are managing Jenkins and the UI?"
+• "What are the credential types supported by Jenkins?"
+• "How Jenkins knows when you execute a scheduled job or pipeline? How it is triggered?"
+7. Closing and Post-Interview Discussion
+The session ended with a formal invitation for questions and a private discussion between the participants:
+
+
+“What tools are you using?”
+
+Answer:
+
+Git / GitHub / GitLab
+
+Jenkins
+
+Docker
+
+Kubernetes (GKE)
+
+Terraform
+
+ArgoCD
+
+Prometheus & Grafana
+
+GCP services
+
+❓ “How do you manage code?”
+
+Answer:
+
+We use Git-based version control with proper branching strategies like feature, develop, and main branches, and all changes go through pull requests and reviews.
+
+3️⃣ Docker & Architecture
+❓ “How is deployment running applications directly from Jenkins?”
+
+Answer:
+
+Jenkins does not deploy applications directly.
+Jenkins builds the code, creates Docker images, runs tests, and pushes images to a container registry.
+After that, Kubernetes pulls the image and runs the application.
+
+❓ “What is the complete architecture?”
+
+Answer:
+
+Developer pushes code →
+Jenkins pipeline builds & tests →
+Docker image created →
+Image pushed to registry →
+ArgoCD syncs Kubernetes manifests →
+Kubernetes deploys pods →
+Service & LoadBalancer expose the app.
+
+❓ “How are images downloaded and what is Kubernetes’ role?”
+
+Answer:
+
+Kubernetes pulls images from the container registry and manages pod scheduling, scaling, self-healing, and networking.
+
+❓ “What is the structure of a Dockerfile?”
+
+Answer:
+
+A Dockerfile contains instructions to build an image:
+
+FROM
+
+WORKDIR
+
+COPY
+
+RUN
+
+EXPOSE
+
+CMD / ENTRYPOINT
+
+❓ “What is the sequence of Dockerfile commands?”
+
+Answer:
+
+FROM
+
+WORKDIR
+
+COPY
+
+RUN
+
+EXPOSE
+
+CMD / ENTRYPOINT
+
+Follow-up
+
+👉 Difference between CMD and ENTRYPOINT?
+Answer:
+CMD provides default command; ENTRYPOINT is always executed.
+
+❓ “What other Dockerfile commands?”
+
+Answer:
+
+ENV
+
+ARG
+
+USER
+
+LABEL
+
+VOLUME
+
+❓ “What type of artifacts are used?”
+
+Answer:
+
+Docker images, JAR files, and build artifacts stored in container registries or artifact repositories.
+
+4️⃣ Kubernetes Management & Networking
+❓ “How do you manage applications using Kubernetes?”
+
+Answer:
+
+I write YAML manifests for:
+
+Deployments
+
+Services
+
+ConfigMaps
+
+Secrets
+
+HPA
+
+These YAML files define how applications should run.
+
+❓ “Traffic is fluctuating – how do you handle it?”
+
+Answer:
+
+Using Horizontal Pod Autoscaler (HPA) which scales pods based on CPU or memory usage.
+
+❓ “What is the role of LoadBalancer?”
+
+Answer:
+
+LoadBalancer exposes applications to external traffic and distributes traffic across pods.
+
+❓ “Internal or external traffic?”
+
+Answer:
+
+LoadBalancer is mainly for external traffic.
+
+❓ “What do you write in YAML?”
+
+Answer:
+
+Image name
+
+Replicas
+
+Resource limits
+
+Probes
+
+Ports
+
+Environment variables
+
+❓ “How do you specify replicas?”
+
+Answer:
+
+In Deployment YAML:
+
+replicas: 3
+
+❓ “How rolling updates work?”
+
+Answer:
+
+Kubernetes updates pods gradually without downtime using maxSurge and maxUnavailable.
+
+❓ “Command for rolling update?”
+
+Answer:
+
+kubectl apply -f deployment.yaml
+
+❓ “How do you restrict access to resources?”
+
+Answer:
+
+RBAC
+
+Network Policies
+
+Resource quotas
+
+❓ “Types of Kubernetes services?”
+
+Answer:
+
+ClusterIP
+
+NodePort
+
+LoadBalancer
+
+❓ “Role of NodePort?”
+
+Answer:
+
+Exposes service on a static port on each node.
+
+❓ “How expose one port on each node?”
+
+Answer:
+
+Define type: NodePort and specify nodePort in YAML.
+
+5️⃣ Terraform (IaC)
+❓ “Have you used Terraform?”
+
+Answer:
+Yes, extensively.
+
+❓ “What have you developed using Terraform?”
+
+Answer:
+
+GKE clusters
+
+VPCs
+
+IAM roles
+
+Load balancers
+
+Pub/Sub
+
+Secret Manager
+
+❓ “Basic Terraform commands?”
+
+Answer:
+
+terraform init
+
+terraform validate
+
+terraform plan
+
+terraform apply
+
+terraform destroy
+
+❓ “Command sequence?”
+
+Answer:
+
+init
+
+validate
+
+plan
+
+apply
+
+❓ “What is terraform validate?”
+
+Answer:
+
+It checks syntax and configuration errors.
+
+❓ “How ignore duplicates?”
+
+Answer:
+
+Use count
+
+Use for_each
+
+Proper state management
+
+❓ “What module can you name?”
+
+Answer:
+
+VPC module
+
+GKE module
+
+IAM module
+
+❓ “Multiple users running Terraform?”
+
+Answer:
+
+Use remote backend with state locking.
+
+❓ “Recover manually deleted resource?”
+
+Answer:
+
+Run terraform apply to recreate or terraform import.
+
+❓ “What does terraform plan show?”
+
+Answer:
+
+What will be created, updated, or destroyed.
+
+❓ “Multiple cloud providers?”
+
+Answer:
+
+Define multiple providers and reference them using provider aliases.
+
+6️⃣ Jenkins & CI/CD
+❓ “Have you written Jenkins pipelines?”
+
+Answer:
+
+Yes, declarative pipelines using Jenkinsfile.
+
+❓ “Credential types in Jenkins?”
+
+Answer:
+
+Username/password
+
+SSH keys
+
+Tokens
+
+Certificates
+
+❓ “How Jenkins triggers jobs?”
+
+Answer:
+
+Git webhooks
+
+Scheduled (cron)
+
+Manual trigger
+
+Upstream jobs

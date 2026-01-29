@@ -1,0 +1,392 @@
+"Can you just tell me about [your core roles and responsibilities as an AWS cloud engineer]?"
+Cost Management and Optimization
+• "...what were the challenges during that time [of cost spikes] and how do you face those challenges?"
+• "What were your approach to the troubleshooting of that?"
+• "...which PHOPS tools have you used like AWS native tools or third party tools for the cost optimization[?]"
+• "...how have you designed the commitment strategies like the savings plan reserved instances what commitment strategies have you designed?"
+• "So can you tell me about about an example of an automation that you have done and that directly has reduced the cloud costes[?]"
+CI/CD and Infrastructure as Code (IaC)
+• "...can you just tell me like what CI/CD pipelines have you built and how many you were create how many you created while from scratch?"
+• "...can you describe a github actions to Jenkins pipeline you have implemented including the triggers and the stages[?]"
+• "...where do we save the terraform or IA code and its state file?"
+• "...how have you written the terapform modules from scratch?"
+• "Can you just tell Me about the entire module structure[?]"
+• "And how do you manage the source control and IA deployment?"
+• "Anything else you want to add?"
+Kubernetes and EKS
+• "...can you tell me about like what was your experience with the Kubernetes and EKS and in which situations you will prefer the Amazon EKS over the NTO Kubernetes?"
+• "How have you migrated the worker nodes from native cubernetes to EKS?"
+• "...how do you perform OS upgrades on EKS worker nodes?"
+• "...do you have any experience with the cluster autoscaler or carpenter[?]"
+• "So can you tell me about your experience with the pod auto horizontal pod autoscaler that is HPA and any other mechanism scaling mechanisms that you have used?"
+Networking
+• "...How would you tie these two VPCs [one in Singapore and one in the US] together?"
+• "What mechanisms would you use?"
+• "And how do n gateways and transit gateways scale across multiple as or regions?
+
+
+Core Role – AWS Cloud Engineer
+Q: “Can you tell me about your core roles and responsibilities as an AWS cloud engineer?”
+Answer (Simple & Clear):
+
+My core responsibility as an AWS Cloud Engineer was to design, build, secure, and optimize cloud infrastructure on AWS.
+I worked on cost optimization, CI/CD pipelines, Infrastructure as Code using Terraform, Kubernetes/EKS management, networking, and security.
+I also collaborated closely with developers to ensure applications were scalable, highly available, and deployed using automation instead of manual processes.
+
+Key responsibilities I usually mention:
+
+
+Designing AWS architecture (VPC, EC2, EKS, RDS, S3, IAM)
+
+
+Cost monitoring and optimization
+
+
+Building CI/CD pipelines
+
+
+Writing Terraform modules and managing state
+
+
+Managing Kubernetes/EKS clusters
+
+
+Troubleshooting production issues
+
+
+Improving reliability, security, and automation
+
+
+Follow-up:
+Q: How did you measure success in your role?
+A: By reduced cloud cost, faster deployments, fewer production incidents, and higher automation coverage.
+
+2. Cost Management & Optimization
+Q: “What were the challenges during cost spikes and how did you face them?”
+Answer:
+
+The main challenges were unexpected EC2 usage, over-provisioned resources, unused EBS volumes, NAT Gateway data charges, and non-production environments running 24/7.
+To handle this, I first identified the root cause using cost analysis tools, then applied optimization techniques like right-sizing, scheduling, and commitment plans.
+
+Follow-up:
+Q: What was the most common cause of cost spikes?
+A: Over-provisioned EC2 instances and non-prod environments running continuously.
+
+Q: “What was your approach to troubleshooting cost issues?”
+Answer:
+
+I followed a structured approach:
+
+
+
+Analyze cost using AWS Cost Explorer
+
+
+Drill down by service, region, and resource
+
+
+Identify abnormal usage patterns
+
+
+Tag resources to identify owners
+
+
+Take corrective actions like right-sizing, stopping unused resources, or automation
+
+
+Follow-up:
+Q: How quickly were you able to reduce costs?
+A: In most cases, immediate savings within days and long-term savings within a month.
+
+Q: “Which FinOps tools have you used?”
+Answer:
+
+I have used both AWS native and third-party tools:
+
+
+
+AWS Cost Explorer
+
+
+AWS Budgets & Alerts
+
+
+AWS Compute Optimizer
+
+
+Trusted Advisor
+
+
+CloudWatch metrics
+
+
+Third-party tools like CloudHealth / Spot.io (if applicable)
+
+
+Follow-up:
+Q: Why use third-party tools when AWS provides native tools?
+A: Third-party tools provide better forecasting, dashboards, and multi-account visibility.
+
+Q: “How did you design commitment strategies like Savings Plans or Reserved Instances?”
+Answer:
+
+I analyzed 12 months of usage data, identified stable workloads, and applied:
+
+
+
+Compute Savings Plans for EC2 and EKS
+
+
+Reserved Instances for steady RDS workloads
+I avoided committing on variable or seasonal workloads.
+
+
+Follow-up:
+Q: Why choose Savings Plans over Reserved Instances?
+A: Savings Plans are more flexible across instance families and regions.
+
+Q: “Example of automation that directly reduced cloud cost?”
+Answer:
+
+I built an automation using Lambda + EventBridge to:
+
+
+
+Stop non-production EC2 and RDS instances after business hours
+
+
+Start them automatically in the morning
+This reduced non-prod cost by nearly 40%.
+
+
+Follow-up:
+Q: How did you avoid impacting production?
+A: Using tags like Environment=NonProd and exclusion rules.
+
+3. CI/CD & Infrastructure as Code
+Q: “What CI/CD pipelines have you built?”
+Answer:
+
+I have built multiple CI/CD pipelines from scratch using GitHub Actions and Jenkins for:
+
+
+
+Application deployments
+
+
+Terraform infrastructure provisioning
+
+
+Docker image builds and pushes to ECR
+
+
+Follow-up:
+Q: Which one do you prefer? Jenkins or GitHub Actions?
+A: GitHub Actions for simplicity; Jenkins for complex enterprise workflows.
+
+Q: “Describe a GitHub Actions to Jenkins pipeline.”
+Answer:
+
+GitHub Actions was used for code validation and triggering Jenkins.
+Pipeline stages included:
+
+
+
+Code checkout
+
+
+Linting and testing
+
+
+Docker build
+
+
+Push image to ECR
+
+
+Terraform plan & apply
+
+
+Deploy to EKS
+
+
+Follow-up:
+Q: What were the triggers?
+A: Pull requests, merges to main branch, and manual approvals.
+
+Q: “Where do you store Terraform code and state file?”
+Answer:
+
+Terraform code is stored in GitHub/GitLab.
+State files are stored in:
+
+
+
+S3 bucket with versioning
+
+
+DynamoDB for state locking
+
+
+Follow-up:
+Q: Why remote state?
+A: To avoid state corruption and support team collaboration.
+
+Q: “How did you write Terraform modules from scratch?”
+Answer:
+
+I created reusable modules for VPC, EKS, EC2, and RDS by:
+
+
+
+Defining input variables
+
+
+Writing resource blocks
+
+
+Using outputs
+
+
+Adding validation and defaults
+
+
+
+Q: “Explain the Terraform module structure.”
+Answer:
+module-name/
+├── main.tf
+├── variables.tf
+├── outputs.tf
+├── versions.tf
+└── README.md
+
+
+Q: “How do you manage source control and IaC deployments?”
+Answer:
+
+Using Git branching strategy:
+
+
+
+Feature branches
+
+
+PR reviews
+
+
+CI pipeline for terraform plan
+
+
+Manual approval for terraform apply
+
+
+
+4. Kubernetes & EKS
+Q: “Your experience with Kubernetes and when prefer EKS?”
+Answer:
+
+I have hands-on experience managing workloads, deployments, services, HPA, and ingress.
+I prefer EKS over self-managed Kubernetes when I need:
+
+
+
+Managed control plane
+
+
+AWS integration
+
+
+High availability
+
+
+Reduced operational overhead
+
+
+Follow-up:
+Q: When would you choose self-managed Kubernetes?
+A: When cost or deep customization is required.
+
+Q: “How did you migrate worker nodes to EKS?”
+Answer:
+
+I created a new EKS node group, drained old nodes using kubectl drain, and allowed pods to reschedule automatically.
+
+
+Q: “How do you perform OS upgrades on EKS worker nodes?”
+Answer:
+
+By creating new node groups with updated AMIs and gradually migrating workloads using rolling upgrades.
+
+
+Q: “Experience with Cluster Autoscaler or Karpenter?”
+Answer:
+
+Yes, I’ve used Cluster Autoscaler and Karpenter to automatically scale nodes based on pod requirements.
+Karpenter is faster and more flexible.
+
+
+Q: “Experience with HPA and other scaling mechanisms?”
+Answer:
+
+I’ve used:
+
+
+
+HPA based on CPU/memory
+
+
+VPA (limited usage)
+
+
+Cluster Autoscaler
+
+
+Karpenter
+
+
+
+5. Networking
+Q: “How would you connect two VPCs in Singapore and US?”
+Answer:
+
+I would use VPC Peering (same region) or Transit Gateway + Site-to-Site VPN or AWS Global Accelerator for cross-region communication.
+
+
+Q: “What mechanisms would you use?”
+Answer:
+
+
+VPC Peering
+
+
+Transit Gateway
+
+
+Site-to-Site VPN
+
+
+Direct Connect (for low latency)
+
+
+
+Q: “How do NAT Gateways and Transit Gateways scale?”
+Answer:
+
+NAT Gateways scale automatically within an AZ.
+Transit Gateways scale horizontally and support multi-VPC and multi-region architectures.
+
+
+Final Interview Closer
+Q: “Anything else you want to add?”
+Answer:
+
+I strongly believe in automation, cost-aware architecture, and building scalable systems.
+I focus on reducing manual work, improving reliability, and continuously optimizing cloud usage.
+
+
+If you want, I can:
+✅ Convert this into short 30-second answers
+✅ Customize it for 2–3 years / 5+ years experience
+✅ Do mock interview Q&A based on your resume
+Just tell me 👍

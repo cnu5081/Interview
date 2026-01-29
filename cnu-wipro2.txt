@@ -1,0 +1,209 @@
+2. CI/CD and GitHub Actions
+Q: Difference between GitHub Actions and Jenkins / GitLab CI?
+
+Answer:
+
+The main difference is that GitHub Actions is tightly integrated with GitHub, while Jenkins and GitLab CI are more standalone tools.
+GitHub Actions uses YAML workflows triggered directly by GitHub events, requires minimal setup, and is easier to maintain. Jenkins is more flexible but needs separate infrastructure, plugin management, and maintenance.
+
+Q: How would you design a CI/CD pipeline using GitHub Actions for microservices?
+
+Answer:
+
+I would create separate workflows per microservice, triggered on code changes.
+The pipeline would include steps for:
+
+Code checkout
+
+Build and unit testing
+
+Docker image build and push
+
+Security scans
+
+Deployment to GKE using Helm or kubectl
+Shared actions or reusable workflows would be used for consistency.
+
+Q: How do you manage secrets securely?
+
+Answer:
+
+I use GitHub Secrets or GCP Secret Manager to store sensitive data.
+Secrets are never hardcoded. Pipelines access them using environment variables or workload identity, ensuring credentials are rotated and securely managed.
+
+Q: Shared library update broke pipelines – how to troubleshoot?
+
+Answer:
+
+First, I would identify what changed in the shared library.
+Then I’d check logs of failing pipelines, validate backward compatibility, and roll back if needed.
+I usually test shared libraries in a staging pipeline before applying them globally.
+
+Q: Pipeline works manually but fails on webhook with permission denied?
+
+Answer:
+
+This usually happens due to permission or token scope issues.
+I would check:
+
+GitHub token permissions
+
+Repository access rights
+
+Service account or SSH key used during automated triggers
+Manual runs often use different credentials than webhook triggers.
+
+3. GCP Infrastructure
+Q: What GCP services have you worked with?
+
+Answer:
+
+I have worked with GKE, Compute Engine, Cloud Load Balancer, Cloud SQL, Cloud Storage, IAM, VPC, Secret Manager, Cloud Monitoring, and Cloud Logging.
+
+Q: Design a highly available 3-tier app on GCP
+
+Answer:
+
+Frontend: Cloud Load Balancer with managed instance groups
+
+Application layer: GKE with multiple replicas across zones
+
+Database: Cloud SQL with high availability
+
+Use autoscaling, health checks, and monitoring to ensure availability.
+
+Q: Multi-region disaster recovery?
+
+Answer:
+
+I would deploy the application in multiple regions, use database replication, store backups in multi-region storage, and use DNS or load balancer-based failover for traffic routing.
+
+Q: Managing multi-cluster GKE across regions?
+
+Answer:
+
+I use Terraform for cluster provisioning, consistent Helm charts for deployments, centralized monitoring, and GitOps to keep configurations synchronized across clusters.
+
+4. Terraform & IaC
+Q: Avoid duplication across environments?
+
+Answer:
+
+I use Terraform modules, variables, and workspaces.
+Common logic is placed in reusable modules, and environment-specific values are passed via variable files.
+
+Q: Avoid Terraform state conflicts?
+
+Answer:
+
+I use a remote backend like GCS with state locking.
+This prevents multiple users from modifying the same state at the same time.
+
+Q: What is terraform import?
+
+Answer:
+
+Terraform import is used to bring existing infrastructure under Terraform management without recreating it.
+It’s useful when infrastructure was created manually or by another tool.
+
+5. Kubernetes & GKE Troubleshooting
+Q: CrashLoopBackOff troubleshooting?
+
+Answer:
+
+I check pod logs, describe the pod, verify environment variables, resource limits, and container startup commands. Most issues are caused by app errors or misconfigurations.
+
+Q: Service-to-service connectivity issue?
+
+Answer:
+
+I check:
+
+Service and pod labels
+
+DNS resolution
+
+Network policies
+
+Firewall rules
+Then test connectivity using exec or debug pods.
+
+Q: Resource contention and pod eviction?
+
+Answer:
+
+I analyze node resource usage, adjust resource requests/limits, scale nodes, and enable cluster autoscaling to prevent eviction.
+
+Q: Autoscaler not scaling?
+
+Answer:
+
+Possible reasons:
+
+Pods have resource requests higher than node capacity
+
+Node pool scaling limits reached
+
+Incorrect taints/tolerations
+I check autoscaler logs and pod scheduling events.
+
+Q: Zero-downtime deployments?
+
+Answer:
+
+I use rolling updates, readiness probes, proper resource limits, and deployment strategies like Blue-Green or Canary.
+
+Q: Have you worked with Canary deployments?
+
+Answer:
+
+Yes. Canary deployments gradually release changes to a small percentage of users, monitor behavior, and then roll out fully if stable.
+
+Q: Deployment strategy comparison?
+
+Answer:
+
+Most affordable: Rolling updates
+
+Safest: Blue-Green
+
+Costliest: Blue-Green (due to duplicate environments)
+
+Best balance: Canary
+
+6. Operations & Security
+Q: Increased latency but no errors?
+
+Answer:
+
+I check resource utilization, database performance, network latency, and external dependencies. Monitoring and tracing help identify bottlenecks.
+
+Q: Memory leak causing pod restarts?
+
+Answer:
+
+I analyze memory usage trends, review application logs, run profiling if possible, and fix or optimize the application. Temporary mitigation includes increasing limits.
+
+Q: Removing key-based access?
+
+Answer:
+
+I replace keys with Workload Identity, enforce IAM best practices, rotate and revoke existing keys, and audit access regularly.
+
+Q: Overly broad IAM permissions?
+
+Answer:
+
+I identify the permissions using IAM audit logs, reduce them following least privilege, and implement approval and review processes.
+
+Q: Dev vs Ops conflict?
+
+Answer:
+
+I encourage collaboration by defining clear deployment standards, shared ownership, automated checks, and using CI/CD gates instead of manual blocking.
+
+Q: Securely expose internal app externally?
+
+Answer:
+
+I use Identity-Aware Proxy (IAP), private load balancers with authentication, VPN, or API gateways—so access is controlled without making it public.

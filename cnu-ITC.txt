@@ -1,0 +1,91 @@
+Q: Have you worked only as a DevOps engineer in GCP or have you also worked as a cloud engineer?
+A: I have primarily worked as a DevOps engineer in GCP, but my role also involved cloud engineering tasks like infrastructure provisioning, IAM management, and monitoring.
+
+Q: What is your primary skill, and which one do you consider as your primary skill?
+A: My primary skill is DevOps automation, especially using Terraform, Kubernetes, and CI/CD pipelines. I am also strong in cloud engineering in GCP.
+
+Q: Did you work on AWS and Azure simultaneously with GCP?
+A: Yes, I have experience working with AWS and some Azure services, but most of my projects were primarily on GCP.
+
+GCP Services and Technical Knowledge
+
+Q: What are the services that you used in the cloud, especially in GCP?
+A: I have used Compute Engine, Cloud Storage, GKE (Kubernetes), Cloud Functions, Pub/Sub, Cloud SQL, Firestore, IAM, Stackdriver, and Cloud Logging/Monitoring.
+
+Q: Have you worked on Firestore?
+A: Yes, I used Firestore for real-time data storage and retrieval in serverless applications.
+
+Q: How about Cloud Functions?
+A: Yes, I have used Cloud Functions to run serverless code for event-driven workflows like file uploads, Pub/Sub triggers, and CI/CD automation.
+
+Q: How about Pub/Sub?
+A: Yes, Pub/Sub was used to decouple microservices and handle asynchronous messaging between applications.
+
+Q: For what purposes did you use Pub/Sub, and can you explain in detail how you integrated it?
+A: We used Pub/Sub for sending messages between microservices. For example, when a new file is uploaded to a storage bucket, a Pub/Sub message triggers a Cloud Function to process the file. Integration is usually done via topics and subscriptions in GCP.
+
+Q: Have you used GCP storage buckets, and for what purposes do you use them in your project?
+A: Yes, we use storage buckets for storing logs, backups, static files, and artifacts from CI/CD pipelines.
+
+Q: Have you managed secrets in GCP, and how do you manage them (e.g., rotation policies)?
+A: Yes, I use Secret Manager to store sensitive data like API keys and database credentials. Rotation policies are configured using automation scripts or Cloud Functions to rotate secrets periodically.
+
+Q: Can you explain what Cloud Functions are?
+A: Cloud Functions are serverless functions that run in response to events like HTTP requests, Pub/Sub messages, or changes in storage buckets. They eliminate the need to manage servers.
+
+Q: Have you worked on any database tools, and have you specifically used the Cloud SQL service inside GCP?
+A: Yes, I have worked with Cloud SQL for relational databases like MySQL and PostgreSQL, mainly for storing application data and backups.
+
+Q: Have you worked on Stackdriver?
+A: Yes, Stackdriver (now part of Google Cloud Operations) is used for monitoring, logging, and alerting on GCP resources.
+
+Q: Have you heard about CMS (Content Management System), and what is your view on it from the DevOps side?
+A: Yes, a CMS is a platform for managing digital content. From a DevOps perspective, the focus is on automating deployment, scaling, backups, and monitoring of CMS environments.
+
+DevOps Practices and Automation
+
+Q: What are your day-to-day tasks and responsibilities as a DevOps engineer in GCP?
+A: Day-to-day tasks include managing CI/CD pipelines, deploying applications, monitoring system performance, automating infrastructure with Terraform, managing IAM, and troubleshooting issues.
+
+Q: Do you work mostly on observability (logging, monitoring, and VMs), or do you handle other tasks like deployments and pipelines?
+A: I handle both. Observability is important, but my main focus is automation, CI/CD deployments, and managing Kubernetes/Docker workloads.
+
+Q: Have you ever used Cloud Functions for CI/CD triggers to respond to repository events?
+A: Yes, I have used Cloud Functions to trigger deployments or workflows when code is pushed to GitHub or GitLab repositories.
+
+Q: How are you using Kubernetes (GKE/EKS) and Docker? Is it specifically for CI/CD pipelines or in an individual way?
+A: I use Docker for containerization and GKE for running microservices. These are mainly part of CI/CD pipelines but also for managing production workloads.
+
+Q: How do you handle IAM activities and access provision? Do you automate this via Terraform, JSON, or do it manually?
+A: I prefer automating IAM using Terraform. For small tasks, I may use JSON or the GCP console, but automation is the standard practice.
+
+Q: How frequent are the deployments or releases in your current project?
+A: Releases happen weekly for production and daily for development or staging environments.
+
+Terraform and Infrastructure as Code
+
+Q: What kind of Terraform modules have you created in your organization and how were they used for automation?
+A: I have created modules for networking (VPC, firewall rules), GKE clusters, storage buckets, and IAM policies. They are reused across environments to standardize infrastructure deployment.
+
+Q: How do you structure Terraform for multi-environment setups (e.g., QA, Staging, Production)?
+A: I use a folder structure with separate directories for each environment, shared modules for common resources, and environment-specific variables files.
+
+Q: If you were creating production infrastructure and saw a failure at the Terraform plan stage, what would be your next steps?
+A: I would check the error details, verify variable values, check resource dependencies, fix the configuration, and then re-run terraform plan.
+
+Q: If your Terraform state is completely corrupted, how would you recover it?
+A: I would restore it from a backup of the remote state file (e.g., GCS bucket), or reconstruct the state using terraform import for existing resources.
+
+Operational Scenarios and Strategy
+
+Q: Have you handled any performance-based issues (e.g., traffic spikes, CPU throttling, or OOM kills), and how did you fix them?
+A: Yes, I have handled such issues by scaling nodes/pods, optimizing resource requests/limits, and using autoscaling features in GKE or Compute Engine.
+
+Q: Do you take care of backups and restoring?
+A: Yes, I implement automated backups for databases and storage using GCP services and scripts.
+
+Q: What kind of data are you backing up (database vs. digital backups), and what is the backup strategy (tools and frequency) you follow?
+A: I back up databases (Cloud SQL) daily, digital artifacts weekly, and use Cloud Storage or GCP-native backup tools. Retention policies are defined per project requirements.
+
+Q: Have you performed migrations (e.g., on-premises to cloud), and who defined the migration strategy—you or an architect?
+A: Yes, I have assisted in migrations. The strategy is usually defined by the cloud architect, and I handle the implementation and testing.

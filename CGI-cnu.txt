@@ -1,0 +1,302 @@
+Terraform & Linux
+1. What is the structure of Terraform files?
+
+Terraform code is written in .tf files.
+Main files are:
+
+provider.tf – cloud provider details
+
+main.tf – resources definition
+
+variables.tf – input variables
+
+terraform.tfvars – variable values
+
+outputs.tf – output values
+
+Terraform uses a state file to track real infrastructure.
+
+2. Which Linux flavors have you worked with?
+
+I have worked with:
+
+RHEL / CentOS
+
+Ubuntu
+
+Amazon Linux
+
+SUSE
+
+Used for application servers, Kubernetes nodes, and CI/CD agents.
+
+3. How do you create golden images of Linux servers in the cloud?
+
+Steps:
+
+Create a base VM
+
+Install required packages, security patches, agents
+
+Harden OS (disable root login, firewall rules)
+
+Clean temp files
+
+Create an image or snapshot
+
+Use this image for auto-scaling or new servers
+
+Tools: Packer, cloud image service
+
+4. How do you give execute permission to all users?
+
+Command:
+
+chmod 755 filename
+
+
+Or:
+
+chmod +x filename
+
+
+This allows owner, group, and others to execute.
+
+Cloud Infrastructure & Disaster Recovery
+5. Explain your disaster recovery strategy
+
+I use:
+
+Snapshots and backups
+
+Multi-zone or multi-region deployment
+
+Load balancers
+
+Auto-scaling
+
+If one zone fails, traffic automatically moves to another.
+
+6. Snapshot lifecycle policy you implemented
+
+I set policies like:
+
+Daily snapshots
+
+Keep for 7–30 days
+
+Delete old snapshots automatically
+
+This reduces storage cost and keeps backups manageable.
+
+7. GKE vs self-managed Kubernetes
+
+GKE:
+
+Google manages control plane
+
+Auto upgrades and scaling
+
+Better security
+
+Self-managed:
+
+You manage everything
+
+More control, more effort
+
+8. Cost optimization techniques in GCP
+
+Use preemptible VMs
+
+Rightsize machines
+
+Delete unused resources
+
+Use committed use discounts
+
+Set budget alerts
+
+Use autoscaling
+
+Kubernetes (GKE)
+9. Deploy app on a specific node
+
+Use:
+
+NodeSelector
+
+Node affinity
+
+Taints & tolerations
+
+Example:
+
+nodeSelector:
+  disktype: ssd
+
+10. What are taints and tolerations?
+
+Taints repel pods from nodes
+
+Tolerations allow pods to run on tainted nodes
+
+Used for dedicated workloads.
+
+11. StatefulSet vs Deployment
+
+Deployment – stateless apps
+
+StatefulSet – stateful apps (DBs)
+
+Stable hostname
+
+Persistent storage
+
+12. Pods can’t access GCS even with permissions – why?
+
+Common reasons:
+
+Workload Identity not configured
+
+Wrong service account
+
+Node using default service account
+
+Missing IAM role
+
+13. Workload Identity vs Managed Identity
+
+Workload Identity → Kubernetes → GCP
+
+Managed Identity → Azure equivalent
+
+Workload Identity is more secure than key-based access.
+
+14. How do you secure a GKE cluster?
+
+Private cluster
+
+RBAC
+
+Network policies
+
+Workload Identity
+
+Secrets manager
+
+Regular patching
+
+15. Node CPU 40–50% but pod throttling – why?
+
+Reason:
+
+Pod CPU limits are too low
+
+Requests/limits misconfigured
+
+Solution:
+
+Increase CPU limits
+
+Review QoS class
+
+Check throttling metrics
+
+16. Node goes “Not Ready” randomly
+
+I check:
+
+Node logs
+
+Disk pressure
+
+Memory pressure
+
+Network issues
+
+Kubernetes events
+
+Fix:
+
+Resize node
+
+Upgrade node
+
+Replace unhealthy node
+
+Deployment & CI/CD
+17. Downtime strategies you used
+
+Rolling deployment
+
+Blue-green deployment
+
+Canary deployment
+
+Goal: Zero or minimal downtime
+
+18. What is blue-green deployment?
+
+Two environments:
+
+Blue – live
+
+Green – new version
+
+After testing green, traffic is switched.
+
+19. How do you switch traffic (blue → green)?
+
+Update service selector
+
+Or update load balancer target
+
+Commands:
+
+kubectl apply
+kubectl rollout status
+
+20. Secure CI/CD for banking applications
+
+Code scanning
+
+Secrets management
+
+Approval gates
+
+Restricted access
+
+Audit logs
+
+Encrypted artifacts
+
+21. CI/CD pipeline stages
+
+Code checkout
+
+Build
+
+Unit tests
+
+Security scan
+
+Artifact creation
+
+Deploy to test
+
+Approval
+
+Production deploy
+
+22. Handling Kubernetes secrets securely
+
+Use Secret Manager
+
+Use Workload Identity
+
+No secrets in Git
+
+Encrypt secrets
+
+Environment-specific secrets

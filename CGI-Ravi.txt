@@ -1,0 +1,135 @@
+"Just talk to me about your GCP experience."
+• "In infrastructure deployment in Terraform, what kind of infrastructure?"
+• "So what is the structure of?" (Referring to the system architecture)
+• "So what kind of... you have this?"
+• When discussing the tool Cube Marine, the interviewer asked: "What is it called?"
+• "Okay but so [you] use Marine to manage?"
+• "For GCP also?"
+Roles and Responsibilities
+• "Apart from deploying, what else do you do?"
+• "Apart from deploying what else?" (Reiterated for emphasis)
+• The interviewer pushed for specific day-to-day details, noting: "I just wanted to understand what you worked... your day-to-day operations, what you do day-to-day, how you work. That’s what I’m taking."
+Problem Solving and Incident Handling
+• "Tell me one of the recent issues that you got in your [experience]?"
+• "What are the error that [you got]?"
+• "Unknown node?" (Clarifying the specific error mentioned)
+• "So you are saying node failed because of configuration issue?"
+• "How many nodes were there?"
+• "I'm just trying to understand how many nodes were there, how many nodes failed, how many nodes were running fine?"
+
+
+1️⃣ “Just talk to me about your GCP experience.”
+
+Easy answer:
+
+“I’ve been working on Google Cloud mainly for infrastructure and application deployment. I’ve used services like Compute Engine, GKE, Cloud Storage, VPC, IAM, and Load Balancers.
+Most of my work is around deploying infrastructure using Terraform, managing Kubernetes clusters, and supporting applications running on GCP. I also handle monitoring, troubleshooting, and day-to-day operations.”
+
+2️⃣ “In infrastructure deployment in Terraform, what kind of infrastructure?”
+
+Easy answer:
+
+“Using Terraform, I deploy GCP infrastructure like VPC networks, subnets, firewall rules, Compute Engine instances, GKE clusters, service accounts, IAM roles, and load balancers.
+We use Terraform to make everything reusable and consistent across environments like dev, QA, and prod.”
+
+3️⃣ “So what is the structure of?” (System architecture)
+
+Easy answer:
+
+“The architecture is mainly based on GKE.
+We have applications running as containers inside Kubernetes clusters.
+Traffic comes through a load balancer, then goes to the services and pods inside GKE.
+The backend services connect to databases or storage, and everything runs inside a secure VPC.”
+
+(If they want simpler)
+
+“It’s a microservices-based architecture running on GKE.”
+
+4️⃣ “So what kind of… you have this?”
+
+(They’re usually checking tools/services)
+
+Safe answer:
+
+“Yes, we have monitoring, logging, CI/CD, and security in place.
+We use tools for deployment automation, cluster management, and monitoring to keep the system stable.”
+
+5️⃣ Cube Marine / “What is it called?”
+
+Correct, simple answer:
+
+“It’s called KubeMarine. It’s a Kubernetes cluster management and deployment tool.”
+
+6️⃣ “Okay but so you use Marine to manage?”
+
+Answer:
+
+“Yes, we use KubeMarine to manage Kubernetes clusters.
+It helps with cluster provisioning, configuration management, node setup, and upgrades.”
+
+7️⃣ “For GCP also?”
+
+Answer:
+
+“Yes, we use it for Kubernetes clusters running on GCP as well.”
+
+🔹 Roles and Responsibilities
+8️⃣ “Apart from deploying, what else do you do?”
+
+Strong, clear answer:
+
+“Apart from deployment, I handle monitoring, troubleshooting, incident support, cluster maintenance, and configuration changes.
+I also work on optimizing resources, managing access using IAM, and supporting developers when issues occur.”
+
+9️⃣ “Day-to-day operations – what do you do daily?”
+
+Very important answer (interviewers LOVE this):
+
+“On a daily basis, I monitor the health of applications and clusters, check alerts, handle incidents if any, support deployments, review logs, and troubleshoot issues.
+I also work on Terraform changes, Kubernetes configurations, and coordinate with the development team.”
+
+🔥 Problem Solving & Incident Handling
+🔟 “Tell me one recent issue you faced.”
+
+Good real-world answer:
+
+“Recently, we faced an issue where one Kubernetes node went into a NotReady state, and pods were getting evicted.”
+
+1️⃣1️⃣ “What error did you get?”
+
+Answer:
+
+“We saw an ‘Unknown node’ or node NotReady error in the cluster.”
+
+1️⃣2️⃣ “Unknown node?”
+
+Answer:
+
+“Yes, the node stopped responding to the control plane, so Kubernetes marked it as Unknown.”
+
+1️⃣3️⃣ “So node failed because of configuration issue?”
+
+Answer:
+
+“Yes, it was mainly due to a configuration issue on the node, which caused the kubelet to stop communicating.”
+
+(You can also say network or disk issue if asked deeper)
+
+1️⃣4️⃣ “How many nodes were there?”
+
+Example answer (adjust numbers if needed):
+
+“The cluster had 5 nodes.”
+
+1️⃣5️⃣ “How many failed and how many were fine?”
+
+Clear answer:
+
+“Out of 5 nodes, 1 node failed and 4 nodes were running fine.
+Kubernetes rescheduled the pods to healthy nodes, so application impact was minimal.”
+
+✅ Bonus Interview Closing Line (Very Powerful)
+
+Use this if you want to sound confident:
+
+“Overall, my role is a mix of infrastructure automation, Kubernetes management, and operational support to keep systems stable and reliable.”

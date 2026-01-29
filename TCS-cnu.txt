@@ -1,0 +1,178 @@
+Git:
+    ◦ Do you know what Git stash is and what it does?
+    ◦ What is a Git repository and how does it work?
+• Kubernetes (K8s) & GKE:
+    ◦ What command do you use if you have to do a manual deployment using Kubernetes resources (like a deployment YAML file)?
+    ◦ Have you ever used GKE (Google Kubernetes Engine) clusters?
+    ◦ What is the concept and purpose of a GKE cluster?
+    ◦ What do you understand by Kubernetes and what are the components of Kubernetes?
+• Jenkins:
+    ◦ Can you explain the Jenkins stages for a pipeline?
+• Google Cloud Platform (GCP):
+    ◦ Have you ever set up firewall rules in GCP?
+    ◦ How do you control traffic (specifically regarding firewall rules or security groups)?
+    ◦ What is the function of a bucket in GCP?
+    ◦ How can you control the access for a bucket, and specifically, how do you do that?
+    ◦ Can you explain the concept of uptime checks and how you contribute to monitoring in GCP?
+• Experience:
+    ◦ What kind of issues have you resolved so far, and have you handled any critical issues in your environment?
+Logistical and Personal Questions
+Toward the end of the interview, the interviewer asked several questions regarding the candidate's professional status:
+• Do you have any queries [for me]?
+• Currently, are you working with [a specific company]?
+• Are you on your notice period?
+• How many days are left in your notice period?
+• Are you holding any [other] offers?
+
+
+Git
+1. What is Git stash and what does it do?
+
+Answer:
+Git stash is used to temporarily save changes that I’m working on but don’t want to commit yet.
+It helps when I need to switch branches quickly without losing my work.
+Later, I can bring those changes back using git stash apply or git stash pop.
+
+2. What is a Git repository and how does it work?
+
+Answer:
+A Git repository is a place where project code and its history are stored.
+It tracks all changes made to files, who made them, and when.
+Developers can clone the repository, create branches, commit changes, and merge them back.
+
+Kubernetes (K8s) & GKE
+3. What command do you use for manual deployment using Kubernetes YAML files?
+
+Answer:
+I use:
+
+kubectl apply -f deployment.yaml
+
+
+This command creates or updates Kubernetes resources defined in the YAML file.
+
+4. Have you ever used GKE clusters?
+
+Answer:
+Yes, I have worked with GKE clusters.
+I’ve used them to deploy, manage, and scale containerized applications on Google Cloud.
+
+5. What is the concept and purpose of a GKE cluster?
+
+Answer:
+A GKE cluster is a managed Kubernetes environment provided by Google Cloud.
+It helps run containerized applications reliably by managing nodes, scaling, networking, and security.
+
+6. What is Kubernetes and what are its components?
+
+Answer:
+Kubernetes is a container orchestration tool used to deploy, manage, and scale containers.
+
+Main components are:
+
+Master/Control Plane – manages the cluster
+
+Nodes – machines that run containers
+
+Pods – smallest deployable unit
+
+Deployments – manage pod replicas
+
+Services – expose applications
+
+ConfigMaps & Secrets – manage configuration and sensitive data
+
+Jenkins
+7. Can you explain Jenkins pipeline stages?
+
+Answer:
+A Jenkins pipeline is divided into stages such as:
+
+Checkout – pull code from Git
+
+Build – compile or build the application
+
+Test – run unit or integration tests
+
+Deploy – deploy to server or Kubernetes
+Each stage helps track progress and identify failures easily.
+
+Google Cloud Platform (GCP)
+8. Have you set up firewall rules in GCP?
+
+Answer:
+Yes, I have created firewall rules to allow or deny traffic based on IP ranges, ports, and protocols.
+
+9. How do you control traffic using firewall rules or security groups?
+
+Answer:
+Traffic is controlled by:
+
+Defining allow or deny rules
+
+Setting source IP ranges
+
+Specifying ports and protocols
+
+Applying rules to specific VM instances or networks
+
+10. What is the function of a bucket in GCP?
+
+Answer:
+A bucket in GCP is used to store objects, such as files, logs, backups, and images, using Google Cloud Storage.
+
+11. How do you control access to a GCP bucket?
+
+Answer:
+Access is controlled using IAM roles.
+We can grant permissions like:
+
+Viewer (read-only)
+
+Editor
+
+Admin
+We assign these roles to users, service accounts, or groups.
+
+12. What are uptime checks and how do you use them?
+
+Answer:
+Uptime checks monitor whether an application or service is available and responding.
+I configure uptime checks and set alerts so that we get notified if a service goes down.
+
+Experience
+13. What kind of issues have you resolved? Have you handled critical issues?
+
+Answer:
+I have resolved issues related to deployments, pod crashes, memory issues, and CI/CD failures.
+Yes, I’ve handled critical production issues by quickly identifying the root cause, rolling back changes, and restoring services.
+
+Logistical & Personal Questions
+14. Do you have any queries for me?
+
+Answer:
+Yes, I’d like to know more about the team structure and the technologies I’d be working with.
+
+15. Are you currently working with [company]?
+
+Answer:
+Yes, I am currently working with [company name].
+(If not, say: “No, I am not currently working there.”)
+
+16. Are you on your notice period?
+
+Answer:
+Yes / No
+(Answer honestly)
+
+17. How many days are left in your notice period?
+
+Answer:
+I have X days remaining in my notice period.
+
+18. Are you holding any other offers?
+
+Answer:
+Yes, I am currently evaluating another offer.
+(or)
+No, I am not holding any other offers at the moment.

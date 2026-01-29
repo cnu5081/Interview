@@ -1,0 +1,480 @@
+Kubernetes
+• In a scenario where your pods are restarting frequently, how do you debug it?
+• What is the difference between deployment, StatefulSet, and DaemonSet?
+• How do rolling updates work in Kubernetes?
+• What is the difference between liveness and readiness probes?
+• What is the difference between ClusterIP, NodePort, and LoadBalancer?
+• How does a Kubernetes service load balance the traffic?
+• What are Pod Disruption Budget (PDB) configuration changes?
+• For monitoring Kubernetes deployments, what tools do you use?
+Terraform and Infrastructure as Code
+• Did you work on Terraform?
+• Can you share your screen and write a bit of code on how you create infrastructure on GCP using Terraform?
+• How do you manage Terraform state in production?
+• Suppose a terraform apply failed midway; what do you do?
+• How do you prevent accidental resource deletion in Terraform?
+• How do you manage secrets in Terraform?
+• How do you detect infrastructure drift (Terraform drift)?
+• How do you avoid hard-coding values?
+• Why might Terraform destroy and recreate resources unexpectedly?
+GCP (Google Cloud Platform)
+• What are all the services you have worked on in GCP?
+• Did you work on Cloud Run?
+• How do you reduce GCP infrastructure costs?
+• Do you create topics and subscriptions in GCP?
+• Have you created any secrets in GCP?
+• How do you create secrets in GCP?
+CI/CD (Jenkins and ArgoCD)
+• For CI/CD, did you work on Jenkins?
+• How do you configure cloud agents/nodes in Jenkins?
+• You use Jenkins for CI and ArgoCD for CD, correct?
+• How do you create projects in ArgoCD?
+• Suppose an application is "out of sync" in ArgoCD but the manifest looks the same; what might be the cause?
+• How does ArgoCD detect drift?
+Monitoring
+• Do you create any dashboards or alerts in Grafana?
+
+
+1️⃣ Pods are restarting frequently – how do you debug?
+
+Answer:
+I follow a step-by-step approach:
+
+Check pod status
+
+kubectl get pods
+
+
+Describe the pod to see events
+
+kubectl describe pod <pod-name>
+
+
+Check logs
+
+kubectl logs <pod-name>
+kubectl logs <pod-name> --previous
+
+
+Common reasons:
+
+Application crash
+
+Liveness probe failing
+
+Out of memory (OOMKilled)
+
+Misconfigured environment variables
+
+If needed, check node resources and limits.
+
+Follow-up Q:
+👉 What is OOMKilled?
+Answer:
+When a container exceeds its memory limit, Kubernetes kills it and restarts the pod.
+
+2️⃣ Difference between Deployment, StatefulSet, and DaemonSet
+Feature	Deployment	StatefulSet	DaemonSet
+Pod identity	Random	Fixed (pod-0, pod-1)	One per node
+Storage	Shared	Persistent	Usually not
+Use case	Stateless apps	Databases	Monitoring, logging
+
+Examples:
+
+Deployment → Web apps
+
+StatefulSet → MySQL, Kafka
+
+DaemonSet → Fluentd, Node Exporter
+
+Follow-up Q:
+👉 Can Deployment be used for databases?
+Answer:
+Not recommended because pod identity and storage are not stable.
+
+3️⃣ How do rolling updates work in Kubernetes?
+
+Answer:
+Rolling updates update pods gradually without downtime.
+
+Old pods are terminated slowly
+
+New pods are created in batches
+
+Controlled by:
+
+maxUnavailable and maxSurge:
+maxUnavailable details below
+Maximum number of pods that can be down (not available) during an update.
+👉 Example:
+Replicas = 10
+maxUnavailable: 2
+→ At most 2 pods can be unavailable while updating
+
+maxSurge
+Maximum number of extra pods that can be created above desired replicas during an update.
+👉 Example:
+Replicas = 10
+maxSurge: 3
+→ Kubernetes can temporarily run 13 pods
+
+Follow-up Q:
+👉 How do you rollback?
+Answer:
+
+kubectl rollout undo deployment <deployment-name>
+
+4️⃣ Liveness vs Readiness probes
+Probe	Purpose
+Liveness	Checks if app is alive
+Readiness	Checks if app can receive traffic
+
+Key point:
+
+Liveness failure → Pod restarted
+
+Readiness failure → Traffic stopped
+
+Follow-up Q:
+👉 Can both be HTTP probes?
+Answer:
+Yes, HTTP, TCP, or command-based probes.
+
+5️⃣ ClusterIP vs NodePort vs LoadBalancer
+Type	Access
+ClusterIP	Internal only
+NodePort	NodeIP:Port
+LoadBalancer	Cloud LB with external IP
+
+Follow-up Q:
+👉 Which is best for production?
+Answer:
+LoadBalancer or Ingress.
+
+6️⃣ How does Kubernetes service load balance traffic?
+
+Answer:
+
+Service uses kube-proxy
+
+Traffic is distributed using iptables or IPVS
+
+Load balances across healthy pod endpoints
+
+Follow-up Q:
+👉 Is it round-robin?
+Answer:
+Yes, effectively round-robin at network level.
+
+7️⃣ Pod Disruption Budget (PDB)
+
+Answer:
+PDB ensures minimum availability during:
+
+Node drain
+
+Upgrades
+
+Example:
+
+minAvailable: 2
+
+
+Follow-up Q:
+👉 Does PDB stop manual pod deletion?
+Answer:
+No, it only affects voluntary disruptions.
+
+8️⃣ Monitoring Kubernetes – tools used
+
+Answer:
+
+Prometheus – metrics
+
+Grafana – dashboards
+
+Alertmanager – alerts
+
+Kubernetes Dashboard
+
+Cloud Monitoring (GCP)
+
+Follow-up Q:
+👉 What metrics do you monitor?
+Answer:
+CPU, memory, pod restarts, latency, error rate.
+
+🔹 Terraform & Infrastructure as Code
+9️⃣ Did you work on Terraform?
+
+Answer:
+Yes, I used Terraform to provision and manage infrastructure like GCP compute, networking, Kubernetes, and IAM using code.
+
+🔟 Sample Terraform code for GCP
+
+Answer (Explain verbally):
+
+Provider configuration
+
+Resource blocks
+
+Variables and outputs
+
+Remote state
+
+(You don’t need to write full code in interview unless asked)
+
+Follow-up Q:
+👉 What is Terraform provider?
+Answer:
+It’s a plugin that allows Terraform to talk to cloud APIs.
+
+1️⃣1️⃣ Managing Terraform state in production
+
+Answer:
+
+Use remote backend
+
+GCS bucket with:
+
+Versioning
+
+State locking
+
+Never use local state in prod
+
+Follow-up Q:
+👉 Why remote state?
+Answer:
+To avoid conflicts and support team collaboration.
+
+1️⃣2️⃣ Terraform apply failed midway – what do you do?
+
+Answer:
+
+Check state file
+
+Run:
+
+terraform plan
+
+
+Fix issue and re-apply
+
+Terraform resumes from current state
+
+Follow-up Q:
+👉 Does Terraform rollback automatically?
+Answer:
+No, it is not transactional.
+
+1️⃣3️⃣ Prevent accidental resource deletion
+
+Answer:
+
+Use:
+
+lifecycle {
+  prevent_destroy = true
+}
+
+
+Enable approvals in CI/CD
+
+Use separate environments
+
+1️⃣4️⃣ Managing secrets in Terraform
+
+Answer:
+
+Use GCP Secret Manager
+
+Use environment variables
+
+Avoid hard-coding secrets
+
+Follow-up Q:
+👉 Is Terraform state encrypted?
+Answer:
+Yes, but secrets can still appear in state.
+
+1️⃣5️⃣ Terraform drift detection
+
+Answer:
+
+Run:
+
+terraform plan
+
+
+Drift occurs when infra changes outside Terraform
+
+1️⃣6️⃣ Avoid hard-coding values
+
+Answer:
+
+Use variables
+
+Use tfvars files
+
+Use modules
+
+1️⃣7️⃣ Why Terraform recreates resources unexpectedly?
+
+Answer:
+
+Immutable fields changed
+
+Manual infra changes
+
+Provider version mismatch
+
+🔹 GCP (Google Cloud Platform)
+1️⃣8️⃣ GCP services worked on
+
+Answer:
+
+GKE
+
+Cloud Run
+
+Compute Engine
+
+Cloud Storage
+
+IAM
+
+VPC
+
+Pub/Sub
+
+Secret Manager
+
+1️⃣9️⃣ Cloud Run experience
+
+Answer:
+Yes, used Cloud Run for serverless containerized applications with auto-scaling.
+
+Follow-up Q:
+👉 When to use Cloud Run vs GKE?
+Answer:
+Cloud Run for simple stateless apps, GKE for complex workloads.
+
+2️⃣0️⃣ Reducing GCP costs
+
+Answer:
+
+Autoscaling
+
+Right-sizing
+
+Committed use discounts
+
+Delete unused resources
+
+Use preemptible VMs
+
+2️⃣1️⃣ Pub/Sub topics and subscriptions
+
+Answer:
+Yes, created topics and pull/push subscriptions.
+
+2️⃣2️⃣ GCP Secrets
+
+Answer:
+Yes, created secrets using Secret Manager.
+
+How to create:
+
+Console
+
+CLI
+
+Terraform
+
+🔹 CI/CD – Jenkins & ArgoCD
+2️⃣3️⃣ Jenkins experience
+
+Answer:
+Yes, used Jenkins for CI:
+
+Build
+
+Test
+
+Docker image creation
+
+Push to registry
+
+2️⃣4️⃣ Jenkins cloud agents
+
+Answer:
+
+Kubernetes plugin
+
+Dynamic agents
+
+Auto-scale pods
+
+2️⃣5️⃣ Jenkins for CI and ArgoCD for CD?
+
+Answer:
+Yes, Jenkins builds artifacts and ArgoCD deploys them.
+
+2️⃣6️⃣ Creating projects in ArgoCD
+
+Answer:
+
+Define project YAML
+
+Configure:
+
+Repos
+
+Destinations
+
+Permissions
+
+2️⃣7️⃣ ArgoCD app out of sync but manifests same
+
+Answer:
+Possible reasons:
+
+Manual kubectl changes
+
+Image tag updated
+
+Resource defaults changed by Kubernetes
+
+2️⃣8️⃣ How ArgoCD detects drift
+
+Answer:
+
+Compares live cluster state
+
+With Git repository manifests
+
+🔹 Monitoring
+2️⃣9️⃣ Grafana dashboards & alerts
+
+Answer:
+Yes, created dashboards for:
+
+CPU & memory
+
+Pod health
+
+Application latency
+
+Alerts:
+
+High CPU
+
+Pod restarts
+
+Service downtime
+
+Follow-up Q:
+👉 How alerts are sent?
+Answer:
+Slack, email, or PagerDuty.
